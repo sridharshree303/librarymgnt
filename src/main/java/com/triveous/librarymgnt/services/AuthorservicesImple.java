@@ -31,6 +31,7 @@ public class AuthorservicesImple implements Authorservices {
 	public List<Author> viewAuthors() {
 		LOG.info("author service - list reuqesting");
 		List<Author> list = new ArrayList<>();
+		list = authorrepository.findAll();
 		LOG.info("author service - list returned");
 		return list;
 	}
