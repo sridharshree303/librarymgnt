@@ -9,5 +9,7 @@ public interface BookServices {
 	public Book saveBook(Book book);
 	
 	public List<Book> listAllBooks();
+	
+	public Book viewBook(String name);
 
 }

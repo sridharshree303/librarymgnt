@@ -38,4 +38,12 @@ public class BookServicesImple implements BookServices {
 		return list;
 	}
 
+	@Override
+	public Book viewBook(String name) {
+		LOG.info("Book service - requesting Book Object");
+		Book book = bookrepository.findByTitle(name);
+		LOG.info("Book service - returned Book object");
+		return book;
+	}
+
 }
