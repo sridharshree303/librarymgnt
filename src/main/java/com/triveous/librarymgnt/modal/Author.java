@@ -1,14 +1,16 @@
 package com.triveous.librarymgnt.modal;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,11 +24,11 @@ public class Author {
 	@Column(nullable = false)
 	private String name;
 
-	//One author can write many books
-	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-	private List<Book> books;
+	@ManyToMany
+    @JoinTable(
+        name = "books_authors",
+        joinColumns = @JoinColumn(name = "author_id"),
+        inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private Set<Book> books = new HashSet<>();
 	
-	//Constructor
-	
-	//getters and setters
 }

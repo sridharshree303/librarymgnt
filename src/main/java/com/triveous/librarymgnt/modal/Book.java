@@ -1,13 +1,17 @@
 package com.triveous.librarymgnt.modal;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -20,28 +24,29 @@ public class Book {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    private Set<Author> author;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "books_authors",
+            joinColumns =  @JoinColumn(name = "book_id") ,
+            inverseJoinColumns =  @JoinColumn(name = "author_id") 
+    )
+    private Set<Author> authors = new HashSet<>();
     
     @ManyToOne
-    @JoinColumn(name = "library_id")
+    @JoinColumn(name = "library_id",nullable = false)
     private Library library;
 
     @Column(nullable = false)
     private Integer quantity;
 
-    //Constructor
-	public Book(Long id, String title, Set<Author> author, Library library, Integer quantity) {
+	public Book(Long id, String title, Set<Author> authors, Library library, Integer quantity) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.author = author;
+		this.authors = authors;
 		this.library = library;
 		this.quantity = quantity;
 	}
-	
-
-    //getters and setters
 
 	public Long getId() {
 		return id;
@@ -59,12 +64,12 @@ public class Book {
 		this.title = title;
 	}
 
-	public Set<Author> getAuthor() {
-		return author;
+	public Set<Author> getAuthors() {
+		return authors;
 	}
 
-	public void setAuthor(Set<Author> author) {
-		this.author = author;
+	public void setAuthors(Set<Author> authors) {
+		this.authors = authors;
 	}
 
 	public Library getLibrary() {
