@@ -1,12 +1,12 @@
 package com.triveous.librarymgnt.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.triveous.librarymgnt.modal.Author;
+import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.services.AuthorServices;
 
 @RestController
@@ -43,6 +44,14 @@ public class AuthorController {
 		for(int i=0;i<list.size();i++) {
 			System.out.println(list.get(i).toString());
 		}
+		return list;
+	}
+	 
+	@GetMapping("/list/{name}")
+	public List<Book> searchByName(@PathVariable String name){
+		LOG.info("author controller - requested author book list");
+		List<Book> list = authorservices.viewBooks(name);
+		LOG.info("author controller - returned author book list");
 		return list;
 	}
 }

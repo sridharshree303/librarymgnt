@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.triveous.librarymgnt.modal.Author;
+import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.repository.Authorrepository;
+import com.triveous.librarymgnt.repository.BookRepository;
 
 @Service
 public class AuthorServicesImple implements AuthorServices {
@@ -18,6 +20,9 @@ public class AuthorServicesImple implements AuthorServices {
 	
 	@Autowired
 	private Authorrepository authorrepository;
+	
+	@Autowired
+	private BookRepository bookrepository;
 	
 	@Override
 	public Author saveAuthor(Author author) {
@@ -36,4 +41,18 @@ public class AuthorServicesImple implements AuthorServices {
 		return list;
 	}
 
+	
+	@Override
+	public List<Book> viewBooks(String name) {
+		Author auth = authorrepository.findByName(name);
+		LOG.info(auth.toString());
+		List<Book> list = bookrepository.findAll();
+		List<Book> res = new ArrayList<>();
+		for(Book b : list) {
+			if(b.getAuthors().contains(auth)) {
+				res.add(b);
+			}
+		}
+		return res;
+	}
 }
