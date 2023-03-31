@@ -1,6 +1,8 @@
 package com.triveous.librarymgnt.modal;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -11,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,16 +22,45 @@ public class Author {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long authorId;
 
 	@Column(nullable = false)
 	private String name;
 
-	@ManyToMany
-    @JoinTable(
-        name = "books_authors",
-        joinColumns = @JoinColumn(name = "author_id"),
-        inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private Set<Book> books = new HashSet<>();
+
+	//Default constructor
+	public Author() {
+		super();
+	}
+	
+	//Parameterized constructor
+	public Author(Long authorId, String name) {
+		super();
+		this.authorId = authorId;
+		this.name = name;
+	}
+
+	//Getters and Setters
+	public Long getId() {
+		return authorId;
+	}
+
+	public void setId(Long authorId) {
+		this.authorId = authorId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Author [id=" + authorId + ", name=" + name + "]";
+	}
 	
 }

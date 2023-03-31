@@ -1,59 +1,58 @@
 package com.triveous.librarymgnt.modal;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Book {
-	
+public class Book implements Serializable{
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long bookId;
 
-    @Column(nullable = false)
-    private String title;
+	@Column(nullable = false)
+	private String title;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "books_authors",
-            joinColumns =  @JoinColumn(name = "book_id") ,
-            inverseJoinColumns =  @JoinColumn(name = "author_id") 
-    )
-    private Set<Author> authors = new HashSet<>();
-    
-    @ManyToOne
-    @JoinColumn(name = "library_id",nullable = false)
-    private Library library;
+	@ManyToMany
+	private List<Author> authors = new ArrayList<>();
 
-    @Column(nullable = false)
-    private Integer quantity;
+	@ManyToOne
+	@JoinColumn(name = "library_id")
+	private Library library;
 
-	public Book(Long id, String title, Set<Author> authors, Library library, Integer quantity) {
+	@Column(nullable = false)
+	private Integer quantity; 
+
+	public Book() {
 		super();
-		this.id = id;
+	}
+
+	public Book(Long bookId, String title, List<Author> authors, Library library, Integer quantity) {
+		super();
+		this.bookId = bookId;
 		this.title = title;
 		this.authors = authors;
 		this.library = library;
 		this.quantity = quantity;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getBookId() {
+		return bookId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
 	}
 
 	public String getTitle() {
@@ -64,11 +63,11 @@ public class Book {
 		this.title = title;
 	}
 
-	public Set<Author> getAuthors() {
+	public List<Author> getAuthors() {
 		return authors;
 	}
 
-	public void setAuthors(Set<Author> authors) {
+	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
 	}
 
@@ -87,5 +86,10 @@ public class Book {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", title=" + title + ", authors=" + authors + " quantity=" + quantity + "]";
+	}
+
 }

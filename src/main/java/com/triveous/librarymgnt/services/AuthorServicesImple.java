@@ -12,9 +12,9 @@ import com.triveous.librarymgnt.modal.Author;
 import com.triveous.librarymgnt.repository.Authorrepository;
 
 @Service
-public class AuthorservicesImple implements Authorservices {
+public class AuthorServicesImple implements AuthorServices {
 
-	private static final Logger LOG = LoggerFactory.getLogger(AuthorservicesImple.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AuthorServicesImple.class);
 	
 	@Autowired
 	private Authorrepository authorrepository;

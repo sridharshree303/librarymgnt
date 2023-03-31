@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.triveous.librarymgnt.modal.Author;
-import com.triveous.librarymgnt.services.Authorservices;
+import com.triveous.librarymgnt.services.AuthorServices;
 
 @RestController
 @RequestMapping("/author")
@@ -23,7 +23,7 @@ public class AuthorController {
 	private static final Logger LOG = LoggerFactory.getLogger(AuthorController.class);
 
 	@Autowired
-	private Authorservices authorservices;
+	private AuthorServices authorservices;
 	
 	@PostMapping("/save")
 	@ResponseBody
