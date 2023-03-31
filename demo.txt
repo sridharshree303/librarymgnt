@@ -1,0 +1,5 @@
+//requirements
+
+library -> many books 
+			-> book have many authors // use the set or list to store the authors
+			-> books count // use map to store the book count or in object it self store the books count
