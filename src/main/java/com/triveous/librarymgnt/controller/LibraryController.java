@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,9 +26,7 @@ public class LibraryController {
 	
 	@Autowired
 	private LibraryService libraryservice;	
-	
-	@Autowired
-	private BookServices bookservices;
+
 	
 	@PatchMapping("/save")
 	public Library saveLibrary(@RequestBody Library library) {
@@ -43,7 +40,7 @@ public class LibraryController {
 	@ResponseBody
 	public List<Book> listOfBooks(){
 		LOG.info("Book controller - requesting library");
-		List<Book> list = bookservices.listAllBooks();
+		List<Book> list = libraryservice.listBooks();
 		LOG.info("Book controller - returned list");
 		return list;
 	}
