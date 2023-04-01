@@ -1,5 +1,6 @@
 package com.triveous.librarymgnt.modal;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
@@ -11,8 +12,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class BookLoan { 
+public class BookLoan implements Serializable { 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loanId;
@@ -32,9 +38,9 @@ public class BookLoan {
     @Column(nullable = false)
     private LocalDate loanDate;
     
-    @Column(nullable = false)
-    private Boolean returned;
+    private Boolean returned = false;
 
+    //default constructor
 	public BookLoan() {
 		super();
 	}
@@ -48,8 +54,6 @@ public class BookLoan {
 		this.loanDate = loanDate;
 		this.returned = returned;
 	}
-
-	
 
 	public Long getLoanId() {
 		return loanId;

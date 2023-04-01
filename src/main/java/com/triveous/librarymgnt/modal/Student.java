@@ -21,13 +21,11 @@ public class Student {
 		super();
 	}
 
-
 	public Student(Long studentId, String sname) {
 		super();
 		this.studentId = studentId;
 		this.sname = sname;
 	}
-
 
 	public Long getStudentId() {
 		return studentId;
