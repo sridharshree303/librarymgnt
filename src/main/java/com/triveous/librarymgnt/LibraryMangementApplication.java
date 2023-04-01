@@ -27,3 +27,9 @@ public class LibraryMangementApplication {
 
 //Swagger UI check
 //http://localhost:8082/swagger-ui/index.html#
+
+
+//pending
+//book quantity should be manipulated
+//Exceptions
+//ResposiveEntity and Headers

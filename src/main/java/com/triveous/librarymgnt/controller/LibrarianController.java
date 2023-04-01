@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.triveous.librarymgnt.modal.Book;
+import com.triveous.librarymgnt.modal.BookLoan;
 import com.triveous.librarymgnt.modal.Librarian;
 import com.triveous.librarymgnt.services.LibrarianServices;
 
@@ -39,6 +41,15 @@ public class LibrarianController {
 		LOG.info("Librarian controller - Requesting librarian list");
 		List<Librarian> list =  librarianservices.listAll();
 		LOG.info("Librarian controller - Requesting librarian list");
+		return list;
+	}
+	
+	@GetMapping("/list/{librarianId}")
+	@ResponseBody
+	public List<BookLoan> issuedListByLibrarianId(long librarianId){
+		LOG.info("Librarian controller - Requesting librarian list");
+		List<BookLoan> list = librarianservices.listOfIssuedBooks(librarianId);
+		LOG.info("Librarian controller - returned librarian list");
 		return list;
 	}
 	
