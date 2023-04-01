@@ -47,12 +47,16 @@ public class AuthorServicesImple implements AuthorServices {
 		Author auth = authorrepository.findByName(name);
 		LOG.info(auth.toString());
 		List<Book> list = bookrepository.findAll();
+		System.out.println(list.isEmpty());
 		List<Book> res = new ArrayList<>();
 		for(Book b : list) {
-			if(b.getAuthors().contains(auth)) {
-				res.add(b);
+			for(Author a : b.getAuthors()) {
+				if(a.getName().equals(name)) {
+					res.add(b);
+				}
 			}
 		}
+		System.out.println(res.isEmpty());
 		return res;
 	}
 }

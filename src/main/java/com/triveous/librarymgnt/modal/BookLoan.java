@@ -3,8 +3,6 @@ package com.triveous.librarymgnt.modal;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +40,7 @@ public class BookLoan implements Serializable {
     
     private Boolean returned = false;
 
+    //default constructor
 	public BookLoan() {
 		super();
 	}
@@ -55,8 +54,6 @@ public class BookLoan implements Serializable {
 		this.loanDate = loanDate;
 		this.returned = returned;
 	}
-
-	
 
 	public Long getLoanId() {
 		return loanId;

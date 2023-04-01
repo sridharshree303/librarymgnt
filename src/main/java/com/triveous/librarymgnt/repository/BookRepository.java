@@ -13,6 +13,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 	
 	 public Book findByTitle(String title);
 	 
+	 public Book findByBookId(Long bookId);
+	 
 	 @Query("SELECT b FROM Book b WHERE b.library.lid = :libraryId")
 	 public List<Book> findByLibraryId(long libraryId); 
 }

@@ -8,5 +8,7 @@ import com.triveous.librarymgnt.modal.Author;
 @Repository
 public interface Authorrepository extends JpaRepository<Author, Integer> {
 	
-	public Author findByName(String name);
+	public Author findByName(String sname);
+
 }
+ 

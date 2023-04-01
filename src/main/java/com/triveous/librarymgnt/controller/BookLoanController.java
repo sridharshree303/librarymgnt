@@ -23,11 +23,20 @@ public class BookLoanController {
 	@Autowired
 	private BookLoanServices bookloanservices;
 	
-	@GetMapping("/loan/{bookName}")
+	@GetMapping("/check/{bookname}")
 	@ResponseBody
-	public BookLoan takeBook(@PathVariable String bookName) {
+	public boolean checkBookAvailability(@PathVariable String bookname) {
+		LOG.info("Book Loan Controller - checking book availabilty");
+		boolean res = bookloanservices.checkBookAvailability(bookname);
+		LOG.info("Book Loan Controller - returned book availabilty");
+		return res;
+	}
+	
+	@GetMapping("/loan/{bookName}&&{studentId}&&{librarianId}")
+	@ResponseBody
+	public BookLoan takeBook(@PathVariable String bookName, @PathVariable Long studentId, @PathVariable Long librarianId) {
 		LOG.info("Book Loan Controller - taking book from library");
-		BookLoan res = bookloanservices.takeBook(bookName);
+		BookLoan res = bookloanservices.takeBook(bookName,studentId,librarianId);
 		LOG.info("Book Loan Controller - returned the loan trasactions");
 		return res;
 	}
