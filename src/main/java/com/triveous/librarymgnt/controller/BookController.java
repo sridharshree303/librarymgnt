@@ -5,6 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.triveous.librarymgnt.exception.AuthorNotFoundException;
+import com.triveous.librarymgnt.exception.BookInputMismatchException;
 import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.services.BookServices;
 
@@ -27,11 +32,14 @@ public class BookController {
 	
 	@PostMapping("/save")
 	@ResponseBody
-	public Book saveBook(@RequestBody Book book) {
+	public ResponseEntity<Book> saveBook(@RequestBody Book book) throws BookInputMismatchException {
 		LOG.info("Book controller - saving book");
 		Book data = bookServices.saveBook(book);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "Book saved successfully");
 		LOG.info("Book controller - returning book");
-		return data;
+		ResponseEntity<Book> response = new ResponseEntity<Book>(data,headers,HttpStatus.OK);
+		return response;
 	}
 	
 	@GetMapping("/list")

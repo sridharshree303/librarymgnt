@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.triveous.librarymgnt.exception.AuthorNotFoundException;
 import com.triveous.librarymgnt.modal.Author;
 import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.repository.Authorrepository;
@@ -43,20 +44,22 @@ public class AuthorServicesImple implements AuthorServices {
 
 	
 	@Override
-	public List<Book> viewBooks(String name) {
+	public List<Book> viewBooks(String name) throws AuthorNotFoundException {
 		Author auth = authorrepository.findByName(name);
-		LOG.info(auth.toString());
-		List<Book> list = bookrepository.findAll();
-		System.out.println(list.isEmpty());
-		List<Book> res = new ArrayList<>();
-		for(Book b : list) {
-			for(Author a : b.getAuthors()) {
-				if(a.getName().equals(name)) {
-					res.add(b);
+		if(auth == null) {
+			LOG.info("Author Not Found");
+			throw new AuthorNotFoundException("Author Not Found");
+		}else {
+			List<Book> list = bookrepository.findAll();
+			List<Book> res = new ArrayList<>();
+			for(Book b : list) {
+				for(Author a : b.getAuthors()) {
+					if(a.getName().equals(name)) {
+						res.add(b);
+					}
 				}
 			}
+			return res;
 		}
-		System.out.println(res.isEmpty());
-		return res;
 	}
 }

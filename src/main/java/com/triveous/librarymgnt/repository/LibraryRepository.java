@@ -8,4 +8,5 @@ import com.triveous.librarymgnt.modal.Library;
 @Repository
 public interface LibraryRepository extends JpaRepository<Library, Integer> {
 	
+	public Library findByLid(long lid);
 }

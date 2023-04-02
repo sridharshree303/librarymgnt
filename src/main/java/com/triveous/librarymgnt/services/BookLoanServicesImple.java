@@ -35,22 +35,18 @@ public class BookLoanServicesImple implements BookLoanServices {
 	@Autowired
 	private LibrarianRepository librarianrepository;
 	
-	Boolean bookAvailable = false;
-	
 	@Override
-	public boolean checkBookAvailability(String name) {
+	public  boolean checkBookAvailability(String name) {
 		//find the book and quantity
 		LOG.info("BookLoan Services - check quantity available");
 		Book b = bookrepository.findByTitle(name);
 		if(b.getQuantity() > 0) {
-			bookAvailable = true;
 			LOG.info("BookLoan Services - Book available in the library");
 			return true;
 		}else {
-			bookAvailable = false;
 			LOG.info("BookLoan Services - Book Not available in the library");
+			return false;
 		}
-		return false;
 	}
 	
 	@Override
@@ -77,12 +73,16 @@ public class BookLoanServicesImple implements BookLoanServices {
 		Optional<Librarian> l = librarianrepository.findById((long)librarianId);
 		Librarian lb = l.get();
 		
-		LOG.info(b.toString());
-		LOG.info(st.toString());
-		LOG.info(lb.toString());
+		//LOG.info(b.toString());
+		//LOG.info(st.toString());
+		//LOG.info(lb.toString());
 		
 		//find and compare the book quantity
-		if(b.getQuantity() > 0) {
+		int bookQuantity = b.getQuantity();
+		if(bookQuantity > 0) {
+			//reduce quantity by 1
+			b.setQuantity(bookQuantity-1);
+			bookrepository.save(b);
 			//set object parameters
 			bloan.setStudent(st);;
 			bloan.setLibrarian(lb);
@@ -107,5 +107,5 @@ public class BookLoanServicesImple implements BookLoanServices {
 		List<BookLoan> list = bookloanrepository.findAll();
 		LOG.info("BookLoan Services - returned the library transactions");
 		return list;
-	}
+	} 
 }

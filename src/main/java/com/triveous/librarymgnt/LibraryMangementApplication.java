@@ -13,11 +13,12 @@ public class LibraryMangementApplication {
     private static final Logger LOG = LoggerFactory.getLogger(LibraryMangementApplication.class);
     
 	public static void main(String[] args) {
-		System.out.println("Start");
+		LOG.info("Start");
 		SpringApplication.run(LibraryMangementApplication.class, args);
-		System.out.println("End");
+		LOG.info("Stop");
 	}
 
+	//demo API for testing
 	@GetMapping("/")
 	public String hello() {
 		return "Hello Sridhar";
@@ -29,7 +30,6 @@ public class LibraryMangementApplication {
 //http://localhost:8082/swagger-ui/index.html#
 
 
-//pending
-//book quantity should be manipulated
+//pending tasks
 //Exceptions
 //ResposiveEntity and Headers

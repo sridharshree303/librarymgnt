@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,7 @@ public class BookLoanController {
 		return res;
 	}
 	
-	@GetMapping("/loan/{bookName}&&{studentId}&&{librarianId}")
+	@PostMapping("/loan/{bookName}&&{studentId}&&{librarianId}")
 	@ResponseBody
 	public BookLoan takeBook(@PathVariable String bookName, @PathVariable Long studentId, @PathVariable Long librarianId) {
 		LOG.info("Book Loan Controller - taking book from library");
