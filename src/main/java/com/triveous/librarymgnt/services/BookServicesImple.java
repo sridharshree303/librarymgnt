@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.triveous.librarymgnt.exception.AuthorNotFoundException;
 import com.triveous.librarymgnt.exception.BookInputMismatchException;
+import com.triveous.librarymgnt.exception.BookNotFoundException;
 import com.triveous.librarymgnt.modal.Author;
 import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.modal.Library;
@@ -77,9 +78,13 @@ public class BookServicesImple implements BookServices {
 	}
 
 	@Override
-	public Book viewBook(String name) {
+	public Book viewBook(String name) throws BookNotFoundException {
 		LOG.info("Book service - requesting Book Object");
 		Book book = bookrepository.findByTitle(name);
+		if(book == null) {
+			LOG.info("Book Not Found");
+			throw new BookNotFoundException("Book Not Found");
+		}
 		LOG.info("Book service - returned Book object");
 		return book;
 	}

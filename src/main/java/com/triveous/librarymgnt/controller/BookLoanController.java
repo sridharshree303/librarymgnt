@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.triveous.librarymgnt.exception.BookLoanInterruptedException;
+import com.triveous.librarymgnt.exception.BookQuantityExceededException;
 import com.triveous.librarymgnt.modal.BookLoan;
 import com.triveous.librarymgnt.services.BookLoanServices;
 
@@ -35,9 +38,12 @@ public class BookLoanController {
 	
 	@PostMapping("/loan/{bookName}&&{studentId}&&{librarianId}")
 	@ResponseBody
-	public BookLoan takeBook(@PathVariable String bookName, @PathVariable Long studentId, @PathVariable Long librarianId) {
+	public BookLoan takeBook(@PathVariable String bookName, @PathVariable Long studentId, @PathVariable Long librarianId)
+			throws BookLoanInterruptedException {
 		LOG.info("Book Loan Controller - taking book from library");
 		BookLoan res = bookloanservices.takeBook(bookName,studentId,librarianId);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message","Book loan input mismatch");
 		LOG.info("Book Loan Controller - returned the loan trasactions");
 		return res;
 	}

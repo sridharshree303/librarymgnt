@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.triveous.librarymgnt.exception.BookLoanInterruptedException;
+import com.triveous.librarymgnt.exception.BookQuantityExceededException;
 import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.modal.BookLoan;
 import com.triveous.librarymgnt.modal.Librarian;
@@ -50,55 +52,58 @@ public class BookLoanServicesImple implements BookLoanServices {
 	}
 	
 	@Override
-	public BookLoan takeBook(String bookName,long studentId,long librarianId) {
-		//find the book 
-			//if(book.quantity > 0)
-		    //   //logic
-			//   // book available and book ID
-		    //else{
-		    //   //return null; 
-		    //}
-		//Select a studentId
-		//Select a librarianID
+	public BookLoan takeBook(String bookName,long studentId,long librarianId) 
+			throws BookLoanInterruptedException {
 		
 		LOG.info("BookLoan Services - taking book from library");
 		
 		//create a BookLoan object
 		BookLoan bloan = new BookLoan();
-		
-		//find the book
+		//check input from the parameters are valid or not
+		//check book and book quantity
 		Book b = bookrepository.findByTitle(bookName);
+		boolean book = b == null ? false : true;
+		
+		//check student id is valid or not
 		Optional<Student> s = studentrepository.findById((long)studentId);
-		Student st = s.get();
+		
+		
+		Student st = s.isEmpty() ? null : s.get();
+		boolean student = st == null ? false : true;
+		
+		//check Librarian id is valid or not
 		Optional<Librarian> l = librarianrepository.findById((long)librarianId);
-		Librarian lb = l.get();
+		Librarian lb = l.isEmpty()? null : l.get();
+		boolean librarian = lb == null ? false : true;
 		
-		//LOG.info(b.toString());
-		//LOG.info(st.toString());
-		//LOG.info(lb.toString());
-		
-		//find and compare the book quantity
-		int bookQuantity = b.getQuantity();
-		if(bookQuantity > 0) {
-			//reduce quantity by 1
-			b.setQuantity(bookQuantity-1);
-			bookrepository.save(b);
-			//set object parameters
-			bloan.setStudent(st);;
-			bloan.setLibrarian(lb);
-			bloan.setReturned(false);
-			bloan.setBook(b);
-			bloan.setLoanDate(LocalDate.now());
+		LOG.info("validating inputs");
+		if(book && student && librarian) {
 			
-			LOG.info(bloan.toString());
-			BookLoan res = bookloanrepository.save(bloan);
-			LOG.info("BookLoan Services - took book from library");
-			return res;
+			//compare the book quantity
+			int bookQuantity = b.getQuantity();
 			
+			if(bookQuantity > 0) {
+				//reduce quantity by 1
+				b.setQuantity(bookQuantity-1);
+				bookrepository.save(b);
+				
+				//set object parameters
+				bloan.setStudent(st);;
+				bloan.setLibrarian(lb);
+				bloan.setReturned(false);
+				bloan.setBook(b);
+				bloan.setLoanDate(LocalDate.now());
+				
+				BookLoan res = bookloanrepository.save(bloan);
+				LOG.info("BookLoan Services - took book from library");
+				return res;
+
+			}
 		}else {
-			LOG.info("Book is not Available in the library");
-			return null;
+			LOG.info("Book loan Trasaction failed");
+			throw new BookLoanInterruptedException("Book loan trasaction failed");
 		}
+		return bloan;
 	}
 
 	@Override

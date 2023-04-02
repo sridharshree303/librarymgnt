@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.triveous.librarymgnt.exception.AuthorNotFoundException;
 import com.triveous.librarymgnt.exception.BookInputMismatchException;
+import com.triveous.librarymgnt.exception.BookNotFoundException;
 import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.services.BookServices;
 
@@ -53,10 +54,14 @@ public class BookController {
 	
 	@GetMapping("/list/{title}")
 	@ResponseBody
-	public Book viewBook(@PathVariable String title) {
+	public ResponseEntity<Book> viewBook(@PathVariable String title) throws BookNotFoundException {
 		LOG.info("Book controller - requesting book object");
 		Book book = bookServices.viewBook(title);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message","Book data returned");
+		headers.add("file-format","JSON");
 		LOG.info("Book controller - returned book object");
-		return book;
+		ResponseEntity<Book> response = new ResponseEntity<Book>(book,headers,HttpStatus.OK);
+		return response;
 	}
 }

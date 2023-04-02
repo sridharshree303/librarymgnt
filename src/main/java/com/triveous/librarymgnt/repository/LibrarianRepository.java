@@ -13,4 +13,6 @@ public interface LibrarianRepository extends JpaRepository<Librarian, Long> {
 
 	@Query("SELECT c FROM Librarian c WHERE c.librarianId = :librarianId")
 	public Optional<Librarian> findById(Long librarianId);
+	
+	public Librarian findByLibrarianId(Long librarianId);
 }

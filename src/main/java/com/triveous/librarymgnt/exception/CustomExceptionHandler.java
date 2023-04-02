@@ -30,4 +30,32 @@ public class CustomExceptionHandler {
 		headers.add("message", "Enter correct input");
 		return new ResponseEntity<Object>(msg,headers,HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(BookNotFoundException.class)
+	public ResponseEntity<Object> handleBookNotFoundException(){
+		LOG.error("handleBookNotFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		String msg = "Book Not Found";
+		headers.add("message","Book Not Found");
+		return new ResponseEntity<Object>(msg,headers,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(LibraryNotFoundException.class)
+	public ResponseEntity<Object> handleLibraryNotFoundException(){
+		LOG.error("handleLibraryNotFoundException");
+		HttpHeaders headers = new HttpHeaders();
+		String msg = "Library Not Found";
+		headers.add("message","Library Not Found");
+		return new ResponseEntity<Object>(msg,headers,HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(BookLoanInterruptedException.class)
+	public ResponseEntity<Object> handleBookLoanInterruptedException(){
+		LOG.error("handleBookLoanInterruptedException");
+		HttpHeaders headers = new HttpHeaders();
+		String msg = "Book loan input mismatched";
+		headers.add("message","Book loan input mismatched");
+		return new ResponseEntity<Object>(msg,headers,HttpStatus.NOT_FOUND);
+	}
+
 }
