@@ -31,22 +31,25 @@ public class AuthorController {
 	private AuthorServices authorservices;
 	
 	@PostMapping("/save")
-	public Author saveAuthor(@RequestBody Author author) {
+	public ResponseEntity<Author> saveAuthor(@RequestBody Author author) {
 		LOG.info("author controller - saving author");
 		Author data = authorservices.saveAuthor(author);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message","saved Author successfully");
 		LOG.info("author controller - returned author");
-		return data;
+		ResponseEntity<Author> response = new ResponseEntity<Author>(data,headers,HttpStatus.OK);
+		return response;
 	}
 	
 	@GetMapping("/list")
-	public List<Author> getAllAuthors(){
+	public ResponseEntity<List<Author>> getAllAuthors(){
 		LOG.info("author controller - requested list");
 		List<Author> list = authorservices.viewAuthors();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message","List retunred");
 		LOG.info("author controller - returend list");
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i).toString());
-		}
-		return list;
+		ResponseEntity<List<Author>> response = new ResponseEntity<List<Author>>(list,headers,HttpStatus.OK);
+		return response;
 	}
 	 
 	@GetMapping("/list/{name}")

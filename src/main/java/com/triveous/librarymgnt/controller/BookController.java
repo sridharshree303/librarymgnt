@@ -43,11 +43,14 @@ public class BookController {
 	}
 	
 	@GetMapping("/list")
-	public List<Book> getAllBooks(){
+	public ResponseEntity<List<Book>> getAllBooks(){
 		LOG.info("Book controller - requesting List");
 		List<Book> list = bookServices.listAllBooks();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "books list returned");
 		LOG.info("Book controller - returning List");
-		return list;
+		ResponseEntity<List<Book>> response = new ResponseEntity<List<Book>>(list,headers,HttpStatus.OK);
+		return response;
 	}
 	
 	@GetMapping("/list/{title}")
