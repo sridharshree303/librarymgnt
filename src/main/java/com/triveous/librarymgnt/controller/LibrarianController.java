@@ -9,14 +9,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.triveous.librarymgnt.exception.LibraryNotFoundException;
-import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.modal.BookLoan;
 import com.triveous.librarymgnt.modal.Librarian;
 import com.triveous.librarymgnt.services.LibrarianServices;
@@ -42,19 +41,23 @@ public class LibrarianController {
 	}
 	
 	@GetMapping("/list")
-	public List<Librarian> listOfLibrarians(){
+	public ResponseEntity<List<Librarian>> listOfLibrarians(){
 		LOG.info("Librarian controller - Requesting librarian list");
 		List<Librarian> list =  librarianservices.listAll();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message", "list of librarians");
 		LOG.info("Librarian controller - Requesting librarian list");
-		return list;
+		return new ResponseEntity<List<Librarian>>(list,headers,HttpStatus.OK);
 	}
 	
 	@GetMapping("/list/{librarianId}")
-	public List<BookLoan> issuedListByLibrarianId(long librarianId){
+	public ResponseEntity<List<BookLoan>> issuedListByLibrarianId(@PathVariable long librarianId){
 		LOG.info("Librarian controller - Requesting librarian list");
 		List<BookLoan> list = librarianservices.listOfIssuedBooks(librarianId);
 		LOG.info("Librarian controller - returned librarian list");
-		return list;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("message","list of book loans given librarian");
+		return new ResponseEntity<List<BookLoan>>(list,headers,HttpStatus.OK);
 	}
 	
 }
