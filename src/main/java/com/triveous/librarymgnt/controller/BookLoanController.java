@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.triveous.librarymgnt.exception.BookLoanInterruptedException;
-import com.triveous.librarymgnt.exception.BookQuantityExceededException;
 import com.triveous.librarymgnt.modal.BookLoan;
 import com.triveous.librarymgnt.services.BookLoanServices;
 

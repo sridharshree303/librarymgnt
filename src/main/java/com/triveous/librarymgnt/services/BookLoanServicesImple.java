@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.triveous.librarymgnt.exception.BookLoanInterruptedException;
-import com.triveous.librarymgnt.exception.BookQuantityExceededException;
 import com.triveous.librarymgnt.modal.Book;
 import com.triveous.librarymgnt.modal.BookLoan;
 import com.triveous.librarymgnt.modal.Librarian;
