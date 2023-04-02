@@ -16,17 +16,19 @@ public class Student {
     @Column(nullable = false)
     private String sname;
     
-    
+    //default constructor
 	public Student() {
 		super();
 	}
 
+	//parameterized constructor
 	public Student(Long studentId, String sname) {
 		super();
 		this.studentId = studentId;
 		this.sname = sname;
 	}
 
+	//getters and setters
 	public Long getStudentId() {
 		return studentId;
 	}

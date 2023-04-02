@@ -27,7 +27,6 @@ public class StudentController {
 	private StudentServices studentservices;
 	
 	@PostMapping("/save")
-	@ResponseBody
 	public Student saveStuddent(@RequestBody Student student) {
 		LOG.info("Student controller - saving student data");
 		LOG.info(student.toString());
@@ -38,7 +37,6 @@ public class StudentController {
 	}
 	
 	@GetMapping("/list")
-	@ResponseBody
 	public List<Student> stdudentList(){
 		LOG.info("Student controller - requested student list");
 		List<Student> list = studentservices.listOfStudents();
@@ -47,7 +45,6 @@ public class StudentController {
 	}
 	
 	@GetMapping("/books/{studentId}")
-	@ResponseBody
 	private List<Book> listOfBooksOfStudent(@PathVariable long studentId){
 		LOG.info("Student Controller - reuqested student books");
 		List<Book> list = studentservices.booksByStudent(studentId);

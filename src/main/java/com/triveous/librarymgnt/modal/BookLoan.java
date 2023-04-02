@@ -45,6 +45,7 @@ public class BookLoan implements Serializable {
 		super();
 	}
 
+	//parameterized constructor
 	public BookLoan(Long loanId, Student student, Librarian librarian, Book book, LocalDate loanDate, Boolean returned) {
 		super();
 		this.loanId = loanId;
@@ -55,6 +56,7 @@ public class BookLoan implements Serializable {
 		this.returned = returned;
 	}
 
+	//getters and setters
 	public Long getLoanId() {
 		return loanId;
 	}

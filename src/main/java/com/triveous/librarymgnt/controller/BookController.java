@@ -32,7 +32,6 @@ public class BookController {
 	private BookServices bookServices;
 	
 	@PostMapping("/save")
-	@ResponseBody
 	public ResponseEntity<Book> saveBook(@RequestBody Book book) throws BookInputMismatchException {
 		LOG.info("Book controller - saving book");
 		Book data = bookServices.saveBook(book);
@@ -44,7 +43,6 @@ public class BookController {
 	}
 	
 	@GetMapping("/list")
-	@ResponseBody
 	public List<Book> getAllBooks(){
 		LOG.info("Book controller - requesting List");
 		List<Book> list = bookServices.listAllBooks();
@@ -53,7 +51,6 @@ public class BookController {
 	}
 	
 	@GetMapping("/list/{title}")
-	@ResponseBody
 	public ResponseEntity<Book> viewBook(@PathVariable String title) throws BookNotFoundException {
 		LOG.info("Book controller - requesting book object");
 		Book book = bookServices.viewBook(title);

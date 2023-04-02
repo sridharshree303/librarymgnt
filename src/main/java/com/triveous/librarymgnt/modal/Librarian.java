@@ -22,10 +22,12 @@ public class Librarian{
 	@JoinColumn(name = "library_lid")
 	private Library library;
 
+	//default constructor
 	public Librarian() {
 		super();
 	}
 
+	//parameterized constructor
 	public Librarian(Long librarianId, String name, Library library) {
 		super();
 		this.librarianId = librarianId;
@@ -33,6 +35,7 @@ public class Librarian{
 		this.library = library;
 	}
 
+	//getters and setters
 	public Long getLibrarianId() {
 		return librarianId;
 	}

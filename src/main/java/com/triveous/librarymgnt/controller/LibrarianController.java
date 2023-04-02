@@ -31,7 +31,6 @@ public class LibrarianController {
 	private LibrarianServices librarianservices;
 	
 	@PostMapping("/save")
-	@ResponseBody
 	public ResponseEntity<Librarian> register(@RequestBody Librarian librarian) throws LibraryNotFoundException {
 		LOG.info("Librarian controller - saving librarian");
 		Librarian lib = librarianservices.register(librarian);
@@ -43,7 +42,6 @@ public class LibrarianController {
 	}
 	
 	@GetMapping("/list")
-	@ResponseBody
 	public List<Librarian> listOfLibrarians(){
 		LOG.info("Librarian controller - Requesting librarian list");
 		List<Librarian> list =  librarianservices.listAll();
@@ -52,7 +50,6 @@ public class LibrarianController {
 	}
 	
 	@GetMapping("/list/{librarianId}")
-	@ResponseBody
 	public List<BookLoan> issuedListByLibrarianId(long librarianId){
 		LOG.info("Librarian controller - Requesting librarian list");
 		List<BookLoan> list = librarianservices.listOfIssuedBooks(librarianId);

@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Library {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long lid;
@@ -16,11 +17,13 @@ public class Library {
 		super();
 	}
 
+	//parameterized constructor
 	public Library(long lid) {
 		super();
 		this.lid = lid;
 	}
 
+	//getters and setters
 	public long getLid() {
 		return lid;
 	}

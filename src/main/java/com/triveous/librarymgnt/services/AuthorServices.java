@@ -10,8 +10,10 @@ public interface AuthorServices {
 	
 	public Author saveAuthor(Author author);
 	
+	//list of authors
 	public List<Author> viewAuthors();
 	
+	//list of books - filter by author
 	public List<Book> viewBooks(String name) throws AuthorNotFoundException;
 
 }

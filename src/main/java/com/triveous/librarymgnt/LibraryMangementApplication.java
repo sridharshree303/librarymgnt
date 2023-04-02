@@ -28,8 +28,3 @@ public class LibraryMangementApplication {
 
 //Swagger UI check
 //http://localhost:8082/swagger-ui/index.html#
-
-
-//pending tasks
-//Exceptions
-//ResposiveEntity and Headers

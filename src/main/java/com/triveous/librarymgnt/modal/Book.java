@@ -41,11 +41,12 @@ public class Book implements Serializable{
 	@Column(nullable = false)
 	private Integer quantity; 
 
-
+	//default constructor
 	public Book() {
 		super();
 	}
 
+	//parameterized constructor
 	public Book(Long bookId, String title, List<Author> authors, Library library, Integer quantity) {
 		super();
 		this.bookId = bookId;
@@ -56,6 +57,7 @@ public class Book implements Serializable{
 	
 	}
 
+	//getters and setters
 	public Long getBookId() {
 		return bookId;
 	}

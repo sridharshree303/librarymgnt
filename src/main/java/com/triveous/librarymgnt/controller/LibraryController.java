@@ -36,7 +36,6 @@ public class LibraryController {
 	}
 	
 	@GetMapping("/books")
-	@ResponseBody
 	public List<Book> listOfBooks(){
 		LOG.info("Book controller - requesting library");
 		List<Book> list = libraryservice.listBooks();

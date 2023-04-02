@@ -8,10 +8,13 @@ import com.triveous.librarymgnt.modal.Book;
 
 public interface BookServices {
 	
+	//save a book
 	public Book saveBook(Book book) throws BookInputMismatchException;
 	
+	//list of books
 	public List<Book> listAllBooks();
 	
+	//view book by book name
 	public Book viewBook(String name) throws BookNotFoundException ;
 
 }

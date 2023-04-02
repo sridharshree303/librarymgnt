@@ -1,0 +1,28 @@
+2023-04-02T22:58:26.261+05:30  INFO 20008 --- [restartedMain] c.t.l.LibraryMangementApplication        : Starting LibraryMangementApplication using Java 17.0.6 with PID 20008 (C:\Users\kosridha\Desktop\Resume\librarymgnt\target\classes started by kosridha in C:\Users\kosridha\Desktop\Resume\librarymgnt)
+2023-04-02T22:58:26.263+05:30  INFO 20008 --- [restartedMain] c.t.l.LibraryMangementApplication        : No active profile set, falling back to 1 default profile: "default"
+2023-04-02T22:58:26.306+05:30  INFO 20008 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-02T22:58:26.306+05:30  INFO 20008 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-02T22:58:26.934+05:30  INFO 20008 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-02T22:58:26.998+05:30  INFO 20008 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 6 JPA repository interfaces.
+2023-04-02T22:58:27.493+05:30  INFO 20008 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2023-04-02T22:58:27.502+05:30  INFO 20008 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-02T22:58:27.503+05:30  INFO 20008 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-02T22:58:27.565+05:30  INFO 20008 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-02T22:58:27.566+05:30  INFO 20008 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1259 ms
+2023-04-02T22:58:27.698+05:30  INFO 20008 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-02T22:58:27.748+05:30  INFO 20008 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-02T22:58:28.009+05:30  INFO 20008 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-02T22:58:28.272+05:30  INFO 20008 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6fa2efb1
+2023-04-02T22:58:28.274+05:30  INFO 20008 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-02T22:58:28.307+05:30  INFO 20008 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-04-02T22:58:29.155+05:30  INFO 20008 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-02T22:58:29.166+05:30  INFO 20008 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-02T22:58:30.489+05:30  INFO 20008 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-04-02T22:58:30.527+05:30  INFO 20008 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2023-04-02T22:58:30.538+05:30  INFO 20008 --- [restartedMain] c.t.l.LibraryMangementApplication        : Started LibraryMangementApplication in 4.562 seconds (process running for 5.195)
+2023-04-02T22:58:30.542+05:30  INFO 20008 --- [restartedMain] c.t.l.LibraryMangementApplication        : Stop
+2023-04-02T22:58:45.311+05:30  INFO 20008 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-04-02T22:58:45.323+05:30  INFO 20008 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-04-02T22:58:45.330+05:30  INFO 20008 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-02T22:58:45.333+05:30  INFO 20008 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-02T22:58:45.336+05:30  INFO 20008 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

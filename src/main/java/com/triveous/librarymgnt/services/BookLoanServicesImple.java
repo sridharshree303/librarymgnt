@@ -38,9 +38,11 @@ public class BookLoanServicesImple implements BookLoanServices {
 	
 	@Override
 	public  boolean checkBookAvailability(String name) {
+		
 		//find the book and quantity
 		LOG.info("BookLoan Services - check quantity available");
 		Book b = bookrepository.findByTitle(name);
+		
 		if(b.getQuantity() > 0) {
 			LOG.info("BookLoan Services - Book available in the library");
 			return true;
@@ -58,15 +60,15 @@ public class BookLoanServicesImple implements BookLoanServices {
 		
 		//create a BookLoan object
 		BookLoan bloan = new BookLoan();
-		//check input from the parameters are valid or not
+		
+		//check input parameters are valid or not
+		
 		//check book and book quantity
 		Book b = bookrepository.findByTitle(bookName);
 		boolean book = b == null ? false : true;
 		
 		//check student id is valid or not
 		Optional<Student> s = studentrepository.findById((long)studentId);
-		
-		
 		Student st = s.isEmpty() ? null : s.get();
 		boolean student = st == null ? false : true;
 		
@@ -82,11 +84,12 @@ public class BookLoanServicesImple implements BookLoanServices {
 			int bookQuantity = b.getQuantity();
 			
 			if(bookQuantity > 0) {
+				
 				//reduce quantity by 1
 				b.setQuantity(bookQuantity-1);
 				bookrepository.save(b);
 				
-				//set object parameters
+				//set object
 				bloan.setStudent(st);;
 				bloan.setLibrarian(lb);
 				bloan.setReturned(false);
@@ -96,7 +99,6 @@ public class BookLoanServicesImple implements BookLoanServices {
 				BookLoan res = bookloanrepository.save(bloan);
 				LOG.info("BookLoan Services - took book from library");
 				return res;
-
 			}
 		}else {
 			LOG.info("Book loan Trasaction failed");

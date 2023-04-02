@@ -27,7 +27,6 @@ public class BookLoanController {
 	private BookLoanServices bookloanservices;
 	
 	@GetMapping("/check/{bookname}")
-	@ResponseBody
 	public boolean checkBookAvailability(@PathVariable String bookname) {
 		LOG.info("Book Loan Controller - checking book availabilty");
 		boolean res = bookloanservices.checkBookAvailability(bookname);
@@ -35,8 +34,7 @@ public class BookLoanController {
 		return res;
 	}
 	
-	@PostMapping("/loan/{bookName}&&{studentId}&&{librarianId}")
-	@ResponseBody
+	@PostMapping("/loan/{bookName}/{studentId}/{librarianId}")
 	public BookLoan takeBook(@PathVariable String bookName, @PathVariable Long studentId, @PathVariable Long librarianId)
 			throws BookLoanInterruptedException {
 		LOG.info("Book Loan Controller - taking book from library");
@@ -49,7 +47,6 @@ public class BookLoanController {
 	
 	
 	@GetMapping("/list_transactions")
-	@ResponseBody
 	public List<BookLoan> listOfTrasactions(){
 		LOG.info("Book Loan Controller - requesting book loans transactions");
 		List<BookLoan> list = bookloanservices.listOfTransactions();

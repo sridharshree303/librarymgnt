@@ -31,7 +31,6 @@ public class AuthorController {
 	private AuthorServices authorservices;
 	
 	@PostMapping("/save")
-	@ResponseBody
 	public Author saveAuthor(@RequestBody Author author) {
 		LOG.info("author controller - saving author");
 		Author data = authorservices.saveAuthor(author);
@@ -40,7 +39,6 @@ public class AuthorController {
 	}
 	
 	@GetMapping("/list")
-	@ResponseBody
 	public List<Author> getAllAuthors(){
 		LOG.info("author controller - requested list");
 		List<Author> list = authorservices.viewAuthors();

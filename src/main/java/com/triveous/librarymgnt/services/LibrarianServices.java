@@ -12,5 +12,6 @@ public interface LibrarianServices {
 	
 	public List<Librarian> listAll();
 	
+	//find book loans issued by librarian
 	public List<BookLoan> listOfIssuedBooks(Long librarianId);
 }

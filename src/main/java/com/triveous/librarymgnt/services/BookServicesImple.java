@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.triveous.librarymgnt.exception.AuthorNotFoundException;
 import com.triveous.librarymgnt.exception.BookInputMismatchException;
 import com.triveous.librarymgnt.exception.BookNotFoundException;
 import com.triveous.librarymgnt.modal.Author;
@@ -56,8 +55,6 @@ public class BookServicesImple implements BookServices {
 		if(temp != null) {
 			libraryStatus = true;
 		}
-		
-		//System.out.println(libraryStatus +"--"+authorsStatus);
 
 		if(libraryStatus && authorsStatus) {
 			LOG.info("Book service - saved book");
